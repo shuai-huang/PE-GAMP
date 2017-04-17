@@ -1,0 +1,43 @@
+
+Author: Shuai Huang, The Johns Hopkins University.
+Email: shuang40@jhu.edu
+
+Last change: 10/29/2016
+Change log: 
+    v1.0 (SH) - First release (10/29/2016)
+    v2.0 comming soon with more input channels~
+    
+
+----------------------------------------------------------------
+This package contains source code for performing sparse signal recovery via PE-GAMP described in the following papers:
+
+@INPROCEEDINGS{PEGAMP17,
+author={S. Huang and T. D. Tran},
+booktitle={2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+title={Sparse Signal Recovery via Generalized Approximate Message Passing with Built-in Parameter Estimation},
+year={2017},
+month={Sept},
+}
+
+@ARTICLE{PEGAMP_long17,
+author = {{Huang}, S. and {Tran}, T.~D.},
+title = "{Sparse Signal Recovery using Generalized Approximate Message Passing with Built-in Parameter Estimation}",
+journal = {ArXiv e-prints},
+archivePrefix = "arXiv",
+eprint = {1606.00901},
+year = 2016,
+month = jun,
+}
+
+If you use this code and find it helpful, please cite the above paper. Thanks:)
+----------------------------------------------------------------
+
+The code is written in MATLAB:
+    1) The folder "BGM" contains the functions to perform sparse signal recovery using the proposed PE-GAMP. The input channel is assumed to be Bernoulli-Gaussian mixture (BGM) channel, the output channel is assumed to be additive white Gaussian noise (AWGN) channel.
+        a) "PEGMAMP.m" is the main function to perform PE-GAMP.
+        b) "PEGMAMP_sim.m" is a simplified version to estimate the parameters.
+        
+    2) The folder "main" contains some functions from the GAMP MATLAB package.
+    3) The folder "test_images_256" contains several image dataset.
+    4) "noiseless_signal_recovery.m" contains examples to perform noiseless recovery.
+    5) "image_recovery.m" contains examples to perform image recovery using PE-GAMP.
