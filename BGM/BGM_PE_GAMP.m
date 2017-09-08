@@ -1,14 +1,14 @@
 % The Generalized approximate message passing with built-in parameter restimation (PE-GAMP)
 %
-% The PE-GAMP where the parameters at different variable nodes are different
+% The simplified PE-GAMP where the parameters at different variable nodes are the same
+% Bernoulli - Gaussian mixture input channel
 %
 % Shuai Huang, The Johns Hopkins University.
 % E-mail: shuang40@jhu.edu
 % Date: 10/29/2016
 % 
 
-
-function [Xhat, PEfin, estHist] = PEGMAMP(Y, A, optPE, optGAMP)
+function [Xhat, PEfin, estHist] = BGM_PE_GAMP(Y, A, optPE, optGAMP)
 
 % If A is an explicit matrix, replace by an operator
 if isa(A, 'double')
@@ -65,7 +65,7 @@ XhatPrev = inf(N,T);
 while stop == 0
     %Increment time exit loop if exceeds maximum time
     t = t + 1;
-    fprintf('%3d\n', t)
+    %fprintf('%3d\n', t)
 
     if t >= optPE.maxPEiter
         stop = 1;
@@ -118,7 +118,7 @@ while stop == 0
     end
 
     phi = max(phi,optPE.minVar);
-    phi_all = squeeze(phi(1,1,:))';
+    phi_all = max(phi_all,optPE.minVar);
 
     %Update noise variance. 
     if ~optPE.cmplx_out
@@ -127,6 +127,7 @@ while stop == 0
     	% TBD
     end
     
+
     %Calculate the change in signal estimates
     norm_change = norm(Xhat-XhatPrev,'fro')/norm(Xhat,'fro');
 
@@ -140,32 +141,33 @@ while stop == 0
     % This is very important for the stabality of the algorithm
     optGAMP = optGAMP.warmStart(estFin);
 
-	%Output final solution 
-	Xhat = estFin.xhat;
-
-	%Output final parameter estimates
-	PEfin.Xvar = estFin.xvar;
-	PEfin.Zhat = estFin.zhat;
-	PEfin.Zvar = estFin.zvar;
-	PEfin.Rhat = estFin.rhat;
-	PEfin.Rvar = estFin.rvar;
-	PEfin.Phat = estFin.phat;
-	PEfin.Pvar = estFin.pvar;
-
-	%GM parameters
-
-	PEfin.lambda = lambda;
-	PEfin.omega = omega;
-	PEfin.active_mean = mu;
-	PEfin.active_var = phi;
-	PEfin.noise_var = noise_var;
-
-	PEfin.lambda_all = lambda_all;
-	PEfin.omega_all = omega_all;
-	PEfin.active_mean_all = mu_all;
-	PEfin.active_var_all = phi_all;
-	PEfin.noise_var_all = noise_var_all;
-
 end
+
+%Output final solution 
+Xhat = estFin.xhat;
+
+%Output final parameter estimates
+PEfin.Xvar = estFin.xvar;
+PEfin.Zhat = estFin.zhat;
+PEfin.Zvar = estFin.zvar;
+PEfin.Rhat = estFin.rhat;
+PEfin.Rvar = estFin.rvar;
+PEfin.Phat = estFin.phat;
+PEfin.Pvar = estFin.pvar;
+
+
+%BGM parameters
+
+PEfin.lambda = lambda;
+PEfin.omega = omega;
+PEfin.active_mean = mu;
+PEfin.active_var = phi;
+PEfin.noise_var = noise_var;
+
+PEfin.lambda_all = lambda_all;
+PEfin.omega_all = omega_all;
+PEfin.active_mean_all = mu_all;
+PEfin.active_var_all = phi_all;
+PEfin.noise_var_all = noise_var_all;
 
 return;

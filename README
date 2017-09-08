@@ -1,12 +1,11 @@
 
 Author: Shuai Huang, The Johns Hopkins University.
 Email: shuang40@jhu.edu
-Homepage: https://sites.google.com/site/shuangsite/
 
-Last change: 10/29/2016
+Last change: 09/03/2017
 Change log: 
     v1.0 (SH) - First release (10/29/2016)
-    v2.0 comming soon with more input channels~
+    v2.0 (SH) - Second release (09/07/2017)
     
 
 ----------------------------------------------------------------
@@ -33,12 +32,24 @@ month = jun,
 If you use this code and find it helpful, please cite the above paper. Thanks:)
 ----------------------------------------------------------------
 
-The code is written in MATLAB:
+Remember to set the parameters accordingly for your specific experiments, the code is written in MATLAB:
+
     1) The folder "BGM" contains the functions to perform sparse signal recovery using the proposed PE-GAMP. The input channel is assumed to be Bernoulli-Gaussian mixture (BGM) channel, the output channel is assumed to be additive white Gaussian noise (AWGN) channel.
-        a) "PEGMAMP.m" is the main function to perform PE-GAMP.
-        b) "PEGMAMP_sim.m" is a simplified version to estimate the parameters.
+        a) "BGM_PE_GAMP.m" is the main function used to perform sum-product PE-GAMP.
+        b) "bgm_input_update.m" is the function used to estimate the input channel parameters.
+        c) "awgn_output_update.m" is the function used to estimate the output channel parameters using sum-product message passing.
+    
+    2) The folder "BEM" corresponds to the Bernoulli-Exponential mixture (BEM) input channel and the AWGN output channel.
+        a) "BEM_PE_GAMP.m" is the main function used to perform sum-product PE-GAMP.
+        b) "bem_input_update.m" is the function used to estimate the input channel parameters.
         
-    2) The folder "main" contains some functions from the GAMP MATLAB package.
-    3) The folder "test_images_256" contains several image dataset.
-    4) "noiseless_signal_recovery.m" contains examples to perform noiseless recovery.
-    5) "image_recovery.m" contains examples to perform image recovery using PE-GAMP.
+    3) The folder "LP" corresponds to the Laplace (LP) input channel and the AWGN output channel.
+        a) "SUM_LP_PE_GAMP.m" is the main function used to perform sum-product PE-GAMP.
+        b) "MAX_LP_PE_GAMP.m" is the main function used to perform max-product PE-GAMP.
+        c) "sum_lp_input_update.m" is the function used to estimate the input channel parameters.
+        
+        
+    4) The folder "main" contains some functions from the GAMP MATLAB package.
+    5) The folder "test_images_256" contains several image dataset.
+    6) "XXX_noiseless_signal_recovery.m" contains examples to perform noiseless recovery experiments.
+    7) "XXX_image_recovery.m" contains examples to perform image recovery experiments using PE-GAMP.

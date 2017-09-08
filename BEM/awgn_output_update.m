@@ -12,7 +12,7 @@
 
 function [noise_var, noise_var_all] = awgn_output_update(Y, Phat, Pvar, noise_var_pre, noise_var_all_pre)
 
-max_ite = 10;               % maximum number of iterations
+max_ite = 100;               % maximum number of iterations
 tol = 1e-6;                 % convergence criteiron
 max_ite_inner = 1000;       % maximum number of iterations in the inner loop
 step_ratio_init = 0.01;     % initial step size

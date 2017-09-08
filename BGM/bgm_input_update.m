@@ -3,6 +3,8 @@
 %
 % The simplified PE-GAMP where the parameters at different variable nodes are the same
 %
+% max_ite, max_ite_inner, step_ratio_init should be set appropriately
+%
 % lambda - Bernoulli distribution parameter [0,1]
 % omega  - Gaussian mixture weights
 % mu     - Gaussian mixture means
